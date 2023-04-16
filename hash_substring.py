@@ -1,32 +1,53 @@
-# python3
+def rabikrap(text, pattern):
 
-def read_input():
-    # this function needs to aquire input both from keyboard and file
-    # as before, use capital i (input from keyboard) and capital f (input from file) to choose which input type will follow
-    
-    
-    # after input type choice
-    # read two lines 
-    # first line is pattern 
-    # second line is text in which to look for pattern 
-    
-    # return both lines in one return
-    
-    # this is the sample return, notice the rstrip function
-    return (input().rstrip(), input().rstrip())
+    galv = 101  
+    x = 256  
+    p = len(pattern)
+    t = len(text)
+    c = 0 
+    d = 0 
+    e = 1
 
-def print_occurrences(output):
-    # this function should control output, it doesn't need any return
-    print(' '.join(map(str, output)))
+    for i in range(p - 1):
+        e = (e * x) % galv
 
-def get_occurrences(pattern, text):
-    # this function should find the occurances using Rabin Karp alghoritm 
+    for i in range(p):
+        c = (x * c + ord(pattern[i])) % galv
+        d = (x * d + ord(text[i])) % galv
 
-    # and return an iterable variable
-    return [0]
+    notikumi = [] 
 
 
-# this part launches the functions
-if __name__ == '__main__':
-    print_occurrences(get_occurrences(*read_input()))
+    for i in range(t - p + 1):
 
+        if c == d:
+            match = True
+            for j in range(p):
+                if text[i + j] != pattern[j]:
+                    match = False
+                    break
+            if match:
+                notikumi.append(i)
+
+
+        if i < t - p:
+            d = (x * (d - ord(text[i]) * e) + ord(text[i + p])) % galv
+
+        
+            if d < 0:
+                d = d + galv
+
+    return notikumi
+
+ievgalv = input()
+if ievgalv == "I":
+    pattern = input().rstrip()
+    text = input().rstrip()
+elif ievgalv == "F":
+    with open("test_sample.txt") as file:
+        pattern = file.readline().rstrip()
+        text = file.readline().rstrip()
+
+
+notikumi = rabikrap(text, pattern)
+print(*notikumi)
