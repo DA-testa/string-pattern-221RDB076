@@ -32,9 +32,11 @@ def rabikraps(text, pattern):
 text = None
 pattern = None
 input_choice = input()
+print(input_choice)
 if input_choice == "I":
     pattern = input().rstrip()
     text = input().rstrip()
+    print(text)
 elif input_choice == "F":
     with open("texttest.txt") as file:
         pattern = file.readline().rstrip()
