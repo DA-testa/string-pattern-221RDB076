@@ -43,7 +43,7 @@ if input_choice == "I":
         pattern = input()
     text = input().rstrip()
 elif input_choice == "F":
-    with open("texttest.txt") as file:
+    with open("06") as file:
         pattern = file.readline().rstrip()
         text = file.readline().rstrip()
 
