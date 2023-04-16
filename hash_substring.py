@@ -32,7 +32,7 @@ def rabikraps(text, pattern):
 text = None
 pattern = None
 input_choice = input()
-print(input_choice.lstrip().rstrip() == 'I')
+print(input_choice.lstrip().rstrip() == "I")
 if input_choice == "I":
     pattern = input().rstrip()
     #\r\n\|??
