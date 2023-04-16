@@ -31,8 +31,8 @@ def rabikraps(text, pattern):
     return notikumi
 text = None
 pattern = None
-input_choice = input()
-print(input_choice.lstrip().rstrip() == "I")
+input_choice = input().lstrip()
+print(input_choice == "I")
 if input_choice == "I":
     pattern = input().rstrip()
     #\r\n\|??
