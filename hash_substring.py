@@ -34,6 +34,9 @@ pattern = None
 input_choice = input()
 if input_choice == "I":
     pattern = input().rstrip()
+    #\r\n\|??
+    if len(pattern)==0:
+        pattern = input()
     print(pattern)
     text = input().rstrip()
     print(text)
