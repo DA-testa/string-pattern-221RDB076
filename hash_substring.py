@@ -1,32 +1,43 @@
-# python3
+def rabikraps(text, pattern):
 
-def read_input():
-    # this function needs to aquire input both from keyboard and file
-    # as before, use capital i (input from keyboard) and capital f (input from file) to choose which input type will follow
-    
-    
-    # after input type choice
-    # read two lines 
-    # first line is pattern 
-    # second line is text in which to look for pattern 
-    
-    # return both lines in one return
-    
-    # this is the sample return, notice the rstrip function
-    return (input().rstrip(), input().rstrip())
+    prime = 101  
+    d = 256  
+    pp = len(pattern)
+    tt = len(text)
+    p = 0 
+    t = 0 
+    h = 1
+    for i in range(pp - 1):
+        h = (h * d) % prime   
+    for i in range(pp):
+        p = (d * p + ord(pattern[i])) % prime
+        t = (d * t + ord(text[i])) % prime
 
-def print_occurrences(output):
-    # this function should control output, it doesn't need any return
-    print(' '.join(map(str, output)))
+    notikumi = []
+    for i in range(tt - pp + 1): 
+        if p == t:
+            match = True
+            for j in range(pp):
+                if text[i + j] != pattern[j]:
+                    match = False
+                    break
+            if match:
+                notikumi.append(i)
+        if i < tt - pp:
+            t = (d * (t - ord(text[i]) * h) + ord(text[i + pp])) % prime
+      
+            if t < 0:
+                t = t + prime
+    return notikumi
+text = None
+input_choice = input()
+if input_choice == "I":
+    pattern = input().rstrip()
+    text = input().rstrip()
+elif input_choice == "F":
+    with open("texttest.txt") as file:
+        pattern = file.readline().rstrip()
+        text = file.readline().rstrip()
 
-def get_occurrences(pattern, text):
-    # this function should find the occurances using Rabin Karp alghoritm 
-
-    # and return an iterable variable
-    return [0]
-
-
-# this part launches the functions
-if __name__ == '__main__':
-    print_occurrences(get_occurrences(*read_input()))
-
+notikumi = rabikraps(text, pattern)
+print(*notikumi)
