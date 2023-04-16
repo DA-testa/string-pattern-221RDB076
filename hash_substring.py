@@ -30,6 +30,7 @@ def rabikraps(text, pattern):
                 t = t + prime
     return notikumi
 text = None
+pattern = None
 input_choice = input()
 if input_choice == "I":
     pattern = input().rstrip()
