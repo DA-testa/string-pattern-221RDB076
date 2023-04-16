@@ -31,20 +31,17 @@ def rabikraps(text, pattern):
     return notikumi
 text = None
 pattern = None
+    #\r\n\|??
 """
 The prompt string, if given, is printed to standard output without a trailing newline before reading input.
 NOT.
 """
 input_choice = input().lstrip().rstrip()
-print(input_choice == "I")
 if input_choice == "I":
     pattern = input().rstrip()
-    #\r\n\|??
     if len(pattern)==0:
         pattern = input()
-    print(pattern)
     text = input().rstrip()
-    print(text)
 elif input_choice == "F":
     with open("texttest.txt") as file:
         pattern = file.readline().rstrip()
